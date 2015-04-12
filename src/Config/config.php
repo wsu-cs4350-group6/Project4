@@ -41,6 +41,7 @@ $config = [
             'name' => 'cs4350',
             'user' => 'cs4350',
             'password' => 'cs4350'
-        ]
+        ],
+        'twitter' => '' //consumer key
     ]
 ];
