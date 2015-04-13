@@ -1,0 +1,14 @@
+{
+  "name": "Project4",
+  "version": "0.1.0",
+  "description": "wsu-cs4350-project4",
+  "repository": {
+    "type": "git",
+    "url": "https://donbstringham@github.com/wsu-cs4350/Project4.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "apidoc": "^0.12.1",
+    "jquery": "^2.1.3"
+  }
+}
