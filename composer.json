@@ -1,10 +1,25 @@
 {
+    "name": "group6/project3",
+    "description": "API authentication layer",
     "require": {
-        "slim/slim": "~2.6",
-        "guzzle/guzzle": "~3.9"
+        "slim/slim": "2.*",
+        "rhumsaa/uuid" : "~2.8"
     },
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "~2.8",
-        "zircote/swagger-php": "0.9.*"
+        "codeception/codeception": "~2.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Darin Critchlow",
+            "email": "darincritchlow@gmail.com"
+        },
+        {
+            "name": "David Albornoz",
+            "email": "davidalbornoz@mail.weber.edu"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"API\\": "src/"}
     }
 }
