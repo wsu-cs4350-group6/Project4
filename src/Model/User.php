@@ -54,6 +54,34 @@ class User
     }
     
     /*
+    * @param int userid
+    * @return User user
+    */ 
+    public static function getUser($id)
+    {
+        /* I think this function should return a user object
+        *  and when saving a user that exists, it should do an update
+        *  for the purposes of this assignment, I'm just returning a db row
+        */ 
+        $user = null;
+        try
+        {
+            $dbh = new PDO('sqlite:'.User::getApp()->sqliteFile);
+            $sql = "SELECT username,firstName,lastName,emailAddress,twitterUsername,registrationDate from users where id=:id";
+            
+            $statement = $dbh->prepare($sql);
+            $statement->execute(array(':id'=>$id));
+            $user = $statement->fetch();
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+        
+        return $user;
+    }
+    
+    /*
     * @return mixed?
     */
     public static function getApp()
