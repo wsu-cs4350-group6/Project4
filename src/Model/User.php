@@ -6,15 +6,28 @@ class User
 {
     protected $username;
     protected $password;
+    protected $firstName;
+    protected $lastName;
+    protected $emailAddress;
+    protected $twitterUsername;
+    protected $registrationDate;
+    
     
     /*
     * @param string $username
     * @param string $password
     */
-    function __construct($username,$password)
+    function __construct($username,$password,$firstName,$lastName,$emailAddress,$twitterUsername)
     {
+        date_default_timezone_set("America/Denver");
+        
         $this->username = $username;
         $this->password = md5($password);
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->emailAddress = $emailAddress;
+        $this->twitterUsername = $twitterUsername;
+        $this->registrationDate = date('Y-m-d');
         
     }
     
@@ -64,13 +77,18 @@ class User
         try
         {
             $dbh = new PDO('sqlite:'.User::getApp()->sqliteFile);
-            $sql = "INSERT INTO users (username,password) values(:username,:password)";
+            $sql = "INSERT INTO users (username,password,firstName,lastName,emailAddress,twitterUsername,registrationDate) values(:username,:password,:firstName,:lastName,:emailAddress,:twitterUsername,:registrationDate)";
             $statement = $dbh->prepare($sql);
             if($statement)
             {
                 $success = $statement->execute(array(
-                    ':username' => $this->username,
-                    ':password' => $this->password
+                    ':username'         => $this->username,
+                    ':password'         => $this->password,
+                    ':firstName'        => $this->firstName,
+                    ':lastName'         => $this->lastName,
+                    ':emailAddress'     => $this->emailAddress,
+                    ':twitterUsername'  => $this->twitterUsername,
+                    ':registrationDate' => $this->registrationDate
                 ));
             }
         }

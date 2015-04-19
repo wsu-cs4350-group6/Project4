@@ -19,8 +19,19 @@ use API\Model\User;
 $app->post('/register',function() use($app){
     $username = $app->request->post('username');
     $password = $app->request->post('password');
+    $firstName = $app->request->post('first_name');
+    $lastName = $app->request->post('last_name');
+    $emailAddress = $app->request->post('email');
+    $twitterUsername = $app->request->post('twitter');
     
-    $user = new User($username,$password);
+    $user = new User(
+        $username,
+        $password,
+        $firstName,
+        $lastName,
+        $emailAddress,
+        $twitterUsername
+    );
     
     $app->response->setStatus(401);
     $app->response->setBody(json_encode(array('UsernameExists'=>'Please use another username')));
@@ -45,12 +56,16 @@ $app->get('/register',function() use($app){
         <script>
         $(function(){
             $('button[type="submit"]').click(function(){
-                var username = $('form input[name="username"]').val()
-                var password = $('form input[name="password"]').val()
+                
+                data = {};
+                $.each($('input'),function(index,el){
+                    data[$(el).attr('name')] = $(el).val();
+                })
+                
                 $.ajax({
                     method:'POST',
                     url:'/register',
-                    data:{'username':username,'password':password}
+                    data:data,
                 }).done(function(msg){
                     $('#registration_response').html(msg);
                 }).fail(function(jqXHR, textStatus){
@@ -66,13 +81,23 @@ $app->get('/register',function() use($app){
         <div id='registration'>
             <h3>Registration</h3>
             <form action='/register' method='post'>
-                <input type='text' name='username' placeholder='username'/>
-                <input type='password' name='password' placeholder='password'/>
-                <button type='submit'>Submit</button>
+                <div class='row'>
+                    <input type='text' name='username' placeholder='username'/>
+                    <input type='password' name='password' placeholder='password'/>
+                </div>
+                <div class='row'>
+                    <input type='text' name='first_name' placeholder="First Name"/>
+                    <input type='text' name='last_name' placeholder="Last Name"/>
+                </div>
+                <div class='row'>
+                    <input type='text' name='email' placeholder="Email Address"/>
+                    <input type='text' name='twitter' placeholder="Twitter Username"/>
+                </div>
             </form>
-            <div style='border-top:1px solid #ddd;height:1px;margin:5px 0;'></div>
+            <button type='submit'>Submit</button>
+            <div style='border-top:1px solid #ddd;height:1px;margin:20px 0;'></div>
             <div id='registration_response'>
-                test
+                
             </div>
         </div>
     </body>
