@@ -40,6 +40,7 @@ $app->post('/register',function() use($app){
     {
         $user_row = User::exists($username);
         $app->response->setStatus(201);
+        $app->response->header('Content-Type', 'application/json');
         $app->response->setBody(json_encode(array('Location'=>'/user/'.$user_row['id']),JSON_UNESCAPED_SLASHES));
     }
     
@@ -50,14 +51,14 @@ $app->get('/register',function() use($app){
     $body = <<<HTML
     <!DOCTYPE html>
     <html>
-    <body>
+    <head>
         <title>Register</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>
         $(function(){
             $('button[type="submit"]').click(function(){
                 
-                data = {};
+                var data = {};
                 $.each($('input'),function(index,el){
                     data[$(el).attr('name')] = $(el).val();
                 })
@@ -67,7 +68,10 @@ $app->get('/register',function() use($app){
                     url:'/register',
                     data:data,
                 }).done(function(msg){
-                    $('#registration_response').html(msg);
+                    console.log(msg);
+                    $('#registration_response').html(
+                        "<a href="+msg.Location+">User Created</a>"
+                    );
                 }).fail(function(jqXHR, textStatus){
                     $('#registration_response').html("Error: " + jqXHR.status);
                 });
@@ -76,7 +80,7 @@ $app->get('/register',function() use($app){
         });
         </script>
         <link rel="stylesheet" href="/css/style.css" type="text/css" media="all">
-    </body>
+    </head>
     <body>
         <div id='registration'>
             <h3>Registration</h3>
