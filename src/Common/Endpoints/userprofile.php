@@ -17,7 +17,7 @@ $app->get('/user/profile/:id', function($id) use($app){
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
+    <title>User $username</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="all">
 </head>
