@@ -89,7 +89,7 @@ class DataBaseAuthentication implements IAuthentication
                 return array('status' => $responseCode, 'body' => $body);
             }
             $responseCode = 200;
-            $body = array('Location' => '/user/'.$row['id']);
+            $body = array('Location' => '/user/profile/'.$row['id']);
             return array('status' => $responseCode, 'body' => $body);
 
         }
