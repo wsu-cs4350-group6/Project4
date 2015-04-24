@@ -5,7 +5,6 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var apidoc = require('gulp-apidoc');
 var watch = require('gulp-watch');
-var clean = require('gulp-clean');
 
 var bases = {
 	bootstrap: 'bower_components/bootstrap/dist/',

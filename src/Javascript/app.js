@@ -34,7 +34,7 @@
                     		
                     		$.each(json, function(idx, obj) {
 								
-								$("#authorized").text("User profile url: " + obj);
+                                window.location = obj;
 
 							});
                     	})
