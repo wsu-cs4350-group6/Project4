@@ -1,6 +1,18 @@
 # Created by https://www.gitignore.io
 
-### PhpStorm ###
+### Composer ###
+composer.phar
+composer.lock
+vendor/
+
+### Bower ###
+bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
+
+
+### JetBrains ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 
 *.iml
@@ -49,21 +61,6 @@ crashlytics.properties
 crashlytics-build.properties
 
 
-### Composer ###
-composer.phar
-
-# Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# composer.lock
-
-
-### Bower ###
-bower_components
-.bower-cache
-.bower-registry
-.bower-tmp
-
-
 ### Node ###
 # Logs
 logs
@@ -93,6 +90,19 @@ build/Release
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 
-# DS_Store
-.DS_Store
-/vendor
+
+### SublimeText ###
+# cache files for sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# workspace files are user-specific
+*.sublime-workspace
+
+# project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using SublimeText
+# *.sublime-project
+
+# sftp configuration file
+sftp-config.json

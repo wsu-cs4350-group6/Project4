@@ -33,7 +33,12 @@ $config = [
             '/'             => $endpoints . DIRECTORY_SEPARATOR . 'home.php',
             '/access'       => $endpoints . DIRECTORY_SEPARATOR . 'access.php',
             '/authenticate' => $endpoints . DIRECTORY_SEPARATOR . 'authenticate.php',
-            '/register'     => $endpoints . DIRECTORY_SEPARATOR . 'register.php'
+            '/authenticate/twitter' => $endpoints . DIRECTORY_SEPARATOR . 'authenticatetwitter.php',
+            '/authenticated/twitter' => $endpoints . DIRECTORY_SEPARATOR . 'authenticatetwitter.php',
+            '/register'     => $endpoints . DIRECTORY_SEPARATOR . 'register.php',
+            '/user'         => $endpoints . DIRECTORY_SEPARATOR . 'user.php',
+            '/user/profile' => $endpoints . DIRECTORY_SEPARATOR . 'userprofile.php',
+            '/test/user'   => $endpoints . DIRECTORY_SEPARATOR . 'testuser.php'
         ],
         'sqlite' => $dataDir . DIRECTORY_SEPARATOR . 'cs4350.sqlite',
         'mysql' => [
@@ -41,7 +46,6 @@ $config = [
             'name' => 'cs4350',
             'user' => 'cs4350',
             'password' => 'cs4350'
-        ],
-        'twitter' => '' //consumer key
+        ]
     ]
 ];
