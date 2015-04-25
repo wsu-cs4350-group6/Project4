@@ -14,6 +14,9 @@
 		$("#loginForm form #password").append('<label for="password">Password</label>');
 		$("#loginForm form #password").append('<input type="password" class="form-control" id="password" name="password" placeholder="password">');
 		$("#loginForm form").append('<button type="submit" class="btn btn-default">Submit</button>');
+        $("#loginForm form").append('</br>');
+        $("#loginForm form").append('</br>');
+        $("#loginForm form").append('<a class="btn twitterBtn" id="twitter"><img src="images/twitter_button.png"/></a>');
 		
 
 		var form = $("#loginForm");
@@ -33,7 +36,7 @@
                     		var json = $.parseJSON(data);
                     		
                     		$.each(json, function(idx, obj) {
-								
+
                                 window.location = obj;
 
 							});
@@ -65,6 +68,21 @@
 
 		});
 
+        var twitter = $("#twitter");
+        twitter.on({
+            "click": function(e){
+                console.log("twitter clicked");
+                authenticateTwitter()
+                .done(
+                    function(data){
+                        var url = data.replace(/\"/g, "");
+                        //console.log(url);
+                        window.location = url;
+                    }
+                );
+
+            }
+        });
 	});
 
 	function authenticate(username, password, accessKey) {
@@ -88,5 +106,12 @@
 			type: "get"
 		});
 	}
+
+    function authenticateTwitter(){
+        return $.ajax({
+            url: "/authenticate/twitter",
+            type: "get"
+        });
+    }
 
 }));

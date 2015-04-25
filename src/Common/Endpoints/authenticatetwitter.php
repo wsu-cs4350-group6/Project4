@@ -13,9 +13,10 @@ $app->get('/authenticate/twitter',function() use ($app){
     
     $_SESSION['oauth_token'] = $request_token['oauth_token'];
     $_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
-    
-    var_dump($request_token);
-    var_dump($url);
+
+    $app->response->setStatus(200);
+
+    $app->response->setBody(json_encode($url, JSON_UNESCAPED_SLASHES));
 });
 
 $app->get('/authenticated/twitter',function() use($app){
@@ -36,7 +37,7 @@ $app->get('/authenticated/twitter',function() use($app){
         $access_token['oauth_token'],
         $access_token['oauth_token_secret']
     );
-    
-    
-    var_dump($connection->get('statuses/user_timeline'));
+
+    $app->response->setBody(json_encode($connection->get('statuses/user_timeline'), JSON_UNESCAPED_SLASHES));
+
 });
