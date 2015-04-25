@@ -37,7 +37,7 @@ $app->get('/authenticated/twitter',function() use($app){
         $access_token['oauth_token'],
         $access_token['oauth_token_secret']
     );
-    
-    
-    var_dump($connection->get('statuses/user_timeline'));
+
+    $app->response->setBody(json_encode($connection->get('statuses/user_timeline'), JSON_UNESCAPED_SLASHES));
+
 });
