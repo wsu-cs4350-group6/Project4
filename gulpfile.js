@@ -5,12 +5,15 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var apidoc = require('gulp-apidoc');
 var watch = require('gulp-watch');
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
 
 var bases = {
 	bootstrap: 'bower_components/bootstrap/dist/',
 	dist: 'public', 
 	stylesheets: 'public/stylesheets/',
 	javascripts: 'public/javascripts/',
+    images: 'public/images',
 	src: 'src',
 	endpoints: 'src/Common/Endpoints',
 	apidocuments: 'public/apidocs'
@@ -19,12 +22,13 @@ var bases = {
 var paths = {
     scripts: 'src/Javascript/*.js',
     bootstrap: bases.bootstrap + 'css/bootstrap.min.css',
-    styles: 'src/Stylesheets/*.css'
+    styles: 'src/Stylesheets/*.css',
+    images: 'src/Images/**.*'
 };
 
 gulp.task('copy', function() {
 
-	gulp.src([paths.styles, paths.bootstrap])
+	gulp.src([paths.bootstrap, paths.styles])
     .pipe(minifyCss())
     .pipe(concat('style.min.css'))
     .pipe(gulp.dest(bases.stylesheets));
@@ -32,6 +36,14 @@ gulp.task('copy', function() {
 	gulp.src(paths.scripts)
 	.pipe(uglify())
 	.pipe(gulp.dest(bases.javascripts));
+
+    gulp.src(paths.images)
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest(bases.images));
 
 });
 
