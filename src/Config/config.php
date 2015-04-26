@@ -46,6 +46,11 @@ $config = [
             'name' => 'cs4350',
             'user' => 'cs4350',
             'password' => 'cs4350'
+        ],
+        'twitter' => [
+            'consumer_key' => 'AkhzPyDT2lHOowR25VsFe9GTU',
+            'consumer_secret' => 'CUo5wkJiXoihxyvuDvFK1V5vsgrpExuBGIr6Em0AD9qODVEprr',
+            'oauth_callback' => 'http://localhost:8080/authenticated/twitter'
         ]
     ]
 ];
